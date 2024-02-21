@@ -48,7 +48,7 @@ public class Main {
                 String body = sc.nextLine();
 
                 lastArticleId = id;
-                Article article = new Article(id, title, body);
+                // Article article = new Article(id, title, body); Exam에서 사용하므로 일단 오류 제거를 위한 주석 처리
 
                 articles.add(article);
 
@@ -67,11 +67,13 @@ public class Main {
 
 class Article {
     int id;
+    String regDate;
     String title;
     String body;
 
-    public Article (int id, String title, String body) {
+    public Article (int id, String regDate, String title, String body) {
         this.id = id;
+        this.regDate = regDate;
         this.title = title;
         this.body = body;
     }
