@@ -50,7 +50,7 @@ public class Main {
                 lastArticleId = id;
                 // Article article = new Article(id, title, body); Exam에서 사용하므로 일단 오류 제거를 위한 주석 처리
 
-                articles.add(article);
+                // articles.add(article);
 
                 System.out.printf("%d번 글이 작성되었습니다.\n", id);
             }
