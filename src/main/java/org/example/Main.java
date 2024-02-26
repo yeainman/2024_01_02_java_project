@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.dto.Article;
+
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;

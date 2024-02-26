@@ -1,13 +1,12 @@
-package org.example;
+package org.example.util;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Test {
-    public static void main(String[] args) {
+public class Util {
+    public static String getNowDateStr() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
         Date today = new Date();
-
-        System.out.println("포맷 지정 후2: " + dateFormat.format(today));
+        return dateFormat.format(today);
     }
 }
