@@ -12,23 +12,16 @@ import java.util.List;
 import java.util.Scanner;
 
 public class App {
-    private List<Article> articles;
-    private List<Member> members;
-
-    public App() {
-        articles = new ArrayList<>();
-        members = new ArrayList<>();
-    }
-
     public void start() {
         System.out.println("== 프로그램 시작 ==");
 
-        makeTestData();
+
 
         Scanner sc = new Scanner(System.in);
 
-        MemberController memberController = new MemberController(sc, members);
-        ArticleController articleController = new ArticleController(sc, articles);
+        MemberController memberController = new MemberController(sc);
+        ArticleController articleController = new ArticleController(sc);
+        articleController.makeTestData();
 
         while ( true ) {
             System.out.printf("명령어) ");
@@ -72,13 +65,5 @@ public class App {
         sc.close();
 
         System.out.println("== 프로그램 끝 ==");
-    }
-
-    private void makeTestData() {
-        System.out.println("테스트를 위한 데이터를 생성합니다.");
-
-        articles.add(new Article(1, Util.getNowDateStr(), "제목1", "내용1", 10));
-        articles.add(new Article(2, Util.getNowDateStr(), "제목2", "내용2", 32));
-        articles.add(new Article(3, Util.getNowDateStr(), "제목3", "내용3", 108));
     }
 }
