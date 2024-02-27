@@ -6,13 +6,29 @@ import org.example.util.Util;
 import java.util.List;
 import java.util.Scanner;
 
-public class MemberController {
+public class MemberController extends Controller {
     private Scanner sc;
     private List<Member> members;
+    private String cmd;
+    private String actionMethodName;
 
     public MemberController(Scanner sc, List<Member> members) {
         this.sc = sc;
         this.members = members;
+    }
+
+    public void doAction(String cmd, String actionMethodName) {
+        this.cmd = cmd;
+        this.actionMethodName = actionMethodName;
+
+        switch ( actionMethodName ) {
+            case "join":
+                doJoin();
+                break;
+            default:
+                System.out.println("존재하지 않는 명령어입니다.");
+                break;
+        }
     }
 
     public void doJoin() {
