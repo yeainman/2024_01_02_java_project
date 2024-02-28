@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import org.example.dto.Article;
 import org.example.dto.Member;
 import org.example.util.Util;
 
@@ -16,6 +17,14 @@ public class MemberController extends Controller {
     public MemberController(Scanner sc) {
         this.sc = sc;
         members = new ArrayList<Member>();
+    }
+
+    public void makeTestData() {
+        System.out.println("테스트를 위한 회원 데이터를 생성합니다.");
+
+        members.add(new Member(1, Util.getNowDateStr(), "admin", "admin", "관리자"));
+        members.add(new Member(1, Util.getNowDateStr(), "user1", "user1", "유저1"));
+        members.add(new Member(1, Util.getNowDateStr(), "user2", "user2", "유저2"));
     }
 
     public void doAction(String cmd, String actionMethodName) {
