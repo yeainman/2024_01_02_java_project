@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import org.example.container.Container;
 import org.example.dto.Article;
 import org.example.dto.Member;
 import org.example.util.Util;
@@ -16,18 +17,16 @@ public class ArticleController extends Controller {
 
     public ArticleController(Scanner sc) {
         this.sc = sc;
-        this.articles = articles;
 
-
-        articles = new ArrayList<Article>();
+        articles = Container.articleDao.articles;
     }
 
     public void makeTestData() {
         System.out.println("테스트를 위한 게시물 데이터를 생성합니다.");
 
-        articles.add(new Article(1, Util.getNowDateStr(), "제목1", "내용1", 10));
-        articles.add(new Article(2, Util.getNowDateStr(), "제목2", "내용2", 32));
-        articles.add(new Article(3, Util.getNowDateStr(), "제목3", "내용3", 108));
+        articles.add(new Article(1, Util.getNowDateStr(), 1, "제목1", "내용1", 10));
+        articles.add(new Article(2, Util.getNowDateStr(), 2, "제목2", "내용2", 32));
+        articles.add(new Article(3, Util.getNowDateStr(), 2, "제목3", "내용3", 108));
     }
 
     public void doAction(String cmd, String actionMethodName) {
@@ -63,7 +62,8 @@ public class ArticleController extends Controller {
         String title = sc.nextLine();
         System.out.printf("내용 : ");
         String body = sc.nextLine();
-        Article article = new Article(id, regDate, title, body);
+
+        Article article = new Article(id, regDate, 1, title, body);
 
         articles.add(article);
 
@@ -96,12 +96,23 @@ public class ArticleController extends Controller {
         }
 
 
-        System.out.println("번호 | 조회 | 제목");
+        System.out.println("번호 |    작성자 | 조회 | 제목");
 
         for ( int i = forListArticles.size() - 1; i >= 0; i-- ) {
             Article article = forListArticles.get(i);
 
-            System.out.printf("%4d | %4d | %s\n", article.id, article.hit, article.title);
+            String writerName = null;
+
+            List<Member> members = Container.memberDao.members;
+
+            for ( Member member : members ) {
+                if ( article.memberId == member.id ) {
+                    writerName = member.name;
+                    break;
+                }
+            }
+
+            System.out.printf("%4d | %6s | %4d | %s\n", article.id, writerName, article.hit, article.title);
         }
     }
 
